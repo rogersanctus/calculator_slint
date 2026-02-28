@@ -35,40 +35,40 @@ export component CalculatorView inherits Window {
 
           // Row 0: Clear and Eraser spanning two columns each
           Row {
-            Button { text: "%"; clicked => { root.inputOperation("%"); display_text.text = root.display }; }
-            Button { text: "C"; clicked => { root.clear(); display_text.text = root.display }; }
-            Button { colspan: 2; text: "←"; clicked => { root.erase(); display_text.text = root.display }; }
+            Button { text: "%"; clicked => { root.inputOperation("%") }; }
+            Button { text: "C"; clicked => { root.clear() }; }
+            Button { colspan: 2; text: "←"; clicked => { root.erase() }; }
           }
 
           // Row 1: 7 8 9 /
           Row {
-            Button { text: "7"; clicked => { root.inputDigit(7); display_text.text = root.display }; }
-            Button { text: "8"; clicked => { root.inputDigit(8); display_text.text = root.display }; }
-            Button { text: "9"; clicked => { root.inputDigit(9); display_text.text = root.display }; }
-            Button { text: "/"; clicked => { root.inputOperation("/"); display_text.text = root.display }; }
+            Button { text: "7"; clicked => { root.inputDigit(7) }; }
+            Button { text: "8"; clicked => { root.inputDigit(8) }; }
+            Button { text: "9"; clicked => { root.inputDigit(9) }; }
+            Button { text: "/"; clicked => { root.inputOperation("/") }; }
           }
 
           // Row 2: 4 5 6 *
           Row {
-            Button { text: "4"; clicked => { root.inputDigit(4); display_text.text = root.display }; }
-            Button { text: "5"; clicked => { root.inputDigit(5); display_text.text = root.display }; }
-            Button { text: "6"; clicked => { root.inputDigit(6); display_text.text = root.display }; }
-            Button { text: "*"; clicked => { root.inputOperation("*"); display_text.text = root.display }; }
+            Button { text: "4"; clicked => { root.inputDigit(4) }; }
+            Button { text: "5"; clicked => { root.inputDigit(5) }; }
+            Button { text: "6"; clicked => { root.inputDigit(6) }; }
+            Button { text: "*"; clicked => { root.inputOperation("*") }; }
           }
 
           // Row 3: 1 2 3 -
           Row {
-            Button { text: "1"; clicked => { root.inputDigit(1); display_text.text = root.display }; }
-            Button { text: "2"; clicked => { root.inputDigit(2); display_text.text = root.display }; }
-            Button { text: "3"; clicked => { root.inputDigit(3); display_text.text = root.display }; }
-            Button { text: "-"; clicked => { root.inputOperation("-"); display_text.text = root.display }; }
+            Button { text: "1"; clicked => { root.inputDigit(1) }; }
+            Button { text: "2"; clicked => { root.inputDigit(2) }; }
+            Button { text: "3"; clicked => { root.inputDigit(3) }; }
+            Button { text: "-"; clicked => { root.inputOperation("-") }; }
           }
 
           // Row 4: 0 % = +
           Row {
-            Button { colspan: 2; text: "0"; clicked => { root.inputDigit(0); display_text.text = root.display }; }
-            Button { text: "="; clicked => { root.inputEquals(); display_text.text = root.display }; }
-            Button { text: "+"; clicked => { root.inputOperation("+"); display_text.text = root.display }; }
+            Button { colspan: 2; text: "0"; clicked => { root.inputDigit(0) }; }
+            Button { text: "="; clicked => { root.inputEquals() }; }
+            Button { text: "+"; clicked => { root.inputOperation("+") }; }
           }
       }
     }
