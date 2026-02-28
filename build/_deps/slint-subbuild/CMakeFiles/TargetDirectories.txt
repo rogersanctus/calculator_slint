@@ -1,3 +1,0 @@
-/home/rogerio/projetos/supra-dev/qween-coder-test/build/_deps/slint-subbuild/CMakeFiles/slint-populate.dir
-/home/rogerio/projetos/supra-dev/qween-coder-test/build/_deps/slint-subbuild/CMakeFiles/edit_cache.dir
-/home/rogerio/projetos/supra-dev/qween-coder-test/build/_deps/slint-subbuild/CMakeFiles/rebuild_cache.dir
