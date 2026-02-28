@@ -1,0 +1,8 @@
+{
+  "name": "qween-coder-test",
+  "version-string": "0.1.0",
+  "description": "C++23 application using Slint and MVVM architecture",
+  "maintainers": ["Your Name <you@example.com>"] ,
+  "dependencies": [
+  ]
+}

@@ -1,0 +1,3 @@
+/home/rogerio/projetos/supra-dev/qween-coder-test/build/_deps/corrosion-subbuild/CMakeFiles/corrosion-populate.dir
+/home/rogerio/projetos/supra-dev/qween-coder-test/build/_deps/corrosion-subbuild/CMakeFiles/edit_cache.dir
+/home/rogerio/projetos/supra-dev/qween-coder-test/build/_deps/corrosion-subbuild/CMakeFiles/rebuild_cache.dir
