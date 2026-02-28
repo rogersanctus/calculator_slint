@@ -27,6 +27,12 @@ add_executable(qween_coder_test_app ${SOURCES})
 # Link libraries
 target_link_libraries(qween_coder_test_app PRIVATE Slint::Slint)
 
+# Include directories - add build directory for generated headers
+target_include_directories(qween_coder_test_app PRIVATE
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../include
+)
+
 # Slint source files
 set(SLINT_SOURCES
     ./view/CalculatorView.slint
