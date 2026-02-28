@@ -1,16 +1,19 @@
 #include "CalculatorView.h"
-#include "./model/CalculatorModel.hpp"
-#include "./viewmodel/CalculatorViewModel.hpp"
+#include "model/CalculatorModel.hpp"
+#include "viewmodel/CalculatorViewModel.hpp"
+#include <memory>
 
-int main(int argc, char* argv[]) {
-    // Build the Slint component
-    auto ui = CalculatorView::create();
-    auto viewModel = std::make_shared<CalculatorViewModel>();
-    ui->on_clear([]() -> viewModel.clear);
-//    component->set_data(viewModel);
-//
-//    auto window = component->create_window();
-    // window->show();
+int main(int argc, char *argv[]) {
+  // Create the View
+  auto ui = CalculatorView::create();
+
+  {
+    CalculatorViewModel viewModel(&*ui);
+
+    // Show and run the window
+    ui->show();
     ui->run();
-    return 0;
+  }
+
+  return 0;
 }
