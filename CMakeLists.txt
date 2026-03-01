@@ -1,4 +1,11 @@
+# Enable VCPKG toolchain
+set(
+  CMAKE_TOOLCHAIN_FILE
+  "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+  CACHE FILEPATH "Path to toolchain")
+
 cmake_minimum_required(VERSION 3.24)
+
 project(qween_coder_test LANGUAGES CXX)
 
 # Use C++23
@@ -6,18 +13,17 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+message(CONFIGURATION_LOG " TOOLCHAIN ${CMAKE_TOOLCHAIN_FILE}")
 
-# Enable VCPKG toolchain if not already set
-if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-  set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
-endif()
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Find packages
 find_package(slint QUIET)
 
 if (NOT Slint_FOUND)
-  message("Slint could not be located in the CMake module search path. Downloading it from Git and building it locally")
+  message(
+    "Slint could not be located in the CMake module search path. Downloading it from Git and building it locally"
+  )
   include(FetchContent)
   FetchContent_Declare(
     Slint
@@ -30,8 +36,8 @@ if (NOT Slint_FOUND)
   FetchContent_MakeAvailable(Slint)
 endif (NOT Slint_FOUND)
 
-add_subdirectory(src)
+# Add Catch2 testing framework
+find_package(Catch2 CONFIG REQUIRED)
 
-# Optional: install rules
-# install(TARGETS qween_coder_test_app_exec DESTINATION bin)
-# install(DIRECTORY include/ DESTINATION include)
+add_subdirectory(src)
+add_subdirectory(tests)

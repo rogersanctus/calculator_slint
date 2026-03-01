@@ -2,33 +2,33 @@
 set(
   SOURCES
   ./main.cpp
-  ./model/CalculatorModel.cpp
-  ./viewmodel/CalculatorViewModel.cpp
 )
 
-# Link Slint library (already fetched by root CMakeLists)
-# The target slint::slint is available after FetchContent_MakeAvailable
-# and will be linked below.
-
 # Define the executable
-add_executable(qween_coder_test_app ${SOURCES})
-# Link executable to the library and Slint
-# slint::slint is available from the fetch in the parent CMakeLists
-# It will be linked automatically via target_link_libraries
+add_executable(calculator_slint_app ${SOURCES})
 
-# Link Slint library to library and executable
-# We must explicitly link slint::slint to the library
-# and then to the executable.
-# (Using PRIVATE to avoid propagating to dependents.)
+add_library(calculator_slint_lib
+  STATIC
+  ./model/CalculatorModel.cpp
+  ./viewmodel/CalculatorViewModel.cpp)
 
-# Ensure slint::slint is found
-# find_package(slint REQUIRED)
+# Inclui a lib no target calculator_slint_lib
+target_include_directories(
+  calculator_slint_lib
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(
+  calculator_slint_lib
+  PUBLIC Slint::Slint)
 
 # Link libraries
-target_link_libraries(qween_coder_test_app PRIVATE Slint::Slint)
+target_link_libraries(
+  calculator_slint_app
+  PRIVATE
+  calculator_slint_lib)
 
 # Include directories - add build directory for generated headers
-target_include_directories(qween_coder_test_app PRIVATE
+target_include_directories(calculator_slint_lib PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../include
 )
@@ -39,4 +39,4 @@ set(SLINT_SOURCES
 )
 
 # Generate C++ sources from Slint UI
-slint_target_sources(qween_coder_test_app ${SLINT_SOURCES})
+slint_target_sources(calculator_slint_lib ${SLINT_SOURCES})
