@@ -1,8 +1,17 @@
 Sobre o projeto
 ===
 
-Aplicação C++ com Slint de uma simples calculadora com as operações básicas: +, -, *, /, ^ (potência x em y), ^2 (x ao quadrado), raiz quadrada, raiz y de x, e com botão para constante PI e para constante euler. Use arquitetura MVVM para separação das partes: View, Model e ViewModel. O projeto deve usar CMake para construção (build) de código, verificação de dependência (use o mínimo possível).
-Cada coisa deve ter seu módulo no par: `modulo.h` e `modulo.cpp` e deve haver um arquivo main.cpp como entrypoint da aplicação. Siga as recomendações do projeto Slint. O C++ deve usar a versão C++23 e todas as boas práticas, evitando variáveis sem uso, ponteiros implícitos, etc.
+Aplicação C++ com Slint de uma simples calculadora com as operações básicas: +, -, *, /, ^ (potência x em y), ^2 (x ao quadrado), raiz quadrada, raiz y de x, e com botão para constante PI e para constante euler. Usando arquitetura MVVM para separação das partes: View, Model e ViewModel. O projeto usa CMake para construção (build) de código, verificação de dependência (use o mínimo possível).
+
+A aplicação foi criada com intuito de aplicar e praticar uso de IAs com agente `Claude CLI` para geração de códigos usando modelos de IA gratuitos rodando de forma Local com a aplicação `Ollama`.
+
+Os modelos testados foram:
+
+* gpt-oss:20b: Melhor resultado no geral.
+* qween-code:30b: Funciona, mas é inviável no meu ambiente com apenas 16GB de VRAM (Memória de vídeo em GPU)
+* glm-4.7-flash:q8_0: Inviável por uso extensivo de RAM que torna tudo mas lento. O ideal seria ter ao menos 32G de VRAM.
+* lfm2:24b: Resultados aceitáveis, mas ainda demora bastante, mesmo sendo um modelo de apenas 14GB.
+* Outros: foram testados modelos com 23GB ou mais, porém é impraticável para máquinas com pouca memória de vídeo disponível.
 
 Resultados
 ---
