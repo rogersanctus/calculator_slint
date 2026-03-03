@@ -1,7 +1,5 @@
 #include "CalculatorView.h"
-#include "model/CalculatorModel.hpp"
 #include "viewmodel/CalculatorViewModel.hpp"
-#include <memory>
 
 int main(int argc, char *argv[]) {
   // Create the View
