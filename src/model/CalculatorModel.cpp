@@ -2,69 +2,69 @@
 #include <cmath>
 
 CalculatorModel::CalculatorModel()
-    : m_display("0"), m_accumulator(0), m_pendingOp(0), m_newInput(true) {}
+    : mDisplay("0"), mAccumulator(0), mPendingOp(0), mNewInput(true) {}
 
-std::string CalculatorModel::display() const { return m_display; }
+std::string CalculatorModel::display() const { return mDisplay; }
 
 void CalculatorModel::inputDigit(int d) {
-  if (m_newInput) {
-    m_display = std::to_string(d);
-    m_newInput = false;
+  if (mNewInput) {
+    mDisplay = std::to_string(d);
+    mNewInput = false;
   } else {
-    if (m_display == "0")
-      m_display = std::to_string(d);
+    if (mDisplay == "0")
+      mDisplay = std::to_string(d);
     else
-      m_display += std::to_string(d);
+      mDisplay += std::to_string(d);
   }
 
-  on_display_changed.emit(m_display);
+  onDisplayChanged.emit(mDisplay);
 }
 
 void CalculatorModel::inputOperation(char op) {
-  double value = std::stod(m_display);
-  if (m_pendingOp) {
-    m_accumulator = compute(m_accumulator, value, m_pendingOp);
+  double value = std::stod(mDisplay);
+  if (mPendingOp) {
+    mAccumulator = compute(mAccumulator, value, mPendingOp);
   } else {
-    m_accumulator = value;
+    mAccumulator = value;
   }
-  m_pendingOp = op;
-  m_newInput = true;
+  mPendingOp = op;
+  mNewInput = true;
 }
 
 void CalculatorModel::inputEquals() {
-  double value = std::stod(m_display);
-  if (m_pendingOp) {
-    m_accumulator = compute(m_accumulator, value, m_pendingOp);
-    m_pendingOp = 0;
+  double value = std::stod(mDisplay);
+  if (mPendingOp) {
+    mAccumulator = compute(mAccumulator, value, mPendingOp);
+    mPendingOp = 0;
   }
-  m_display = std::to_string(m_accumulator);
+  mDisplay = std::to_string(mAccumulator);
   // Remove trailing zeros
-  m_display.erase(m_display.find_last_not_of('0') + 1, std::string::npos);
-  if (!m_display.empty() && m_display.back() == '.')
-    m_display.pop_back();
-  m_newInput = true;
+  mDisplay.erase(mDisplay.find_last_not_of('0') + 1, std::string::npos);
+  if (!mDisplay.empty() && mDisplay.back() == '.')
+    mDisplay.pop_back();
+  mNewInput = true;
 
-  on_display_changed.emit(m_display);
+  onDisplayChanged.emit(mDisplay);
 }
 
 void CalculatorModel::clear() {
-  m_display = "0";
-  m_accumulator = 0;
-  m_pendingOp = 0;
-  m_newInput = true;
+  mDisplay = "0";
+  mAccumulator = 0;
+  mPendingOp = 0;
+  mNewInput = true;
 
-  on_display_changed.emit(m_display);
+  onDisplayChanged.emit(mDisplay);
 }
 
 void CalculatorModel::erase() {
-  if (m_display.size() > 1) {
-    m_display.pop_back();
+  if (mDisplay.size() > 1) {
+    mDisplay.pop_back();
   } else {
-    m_display = "0";
+    mDisplay = "0";
   }
-  m_newInput = false;
+  mNewInput = false;
 
-  on_display_changed.emit(m_display);
+  onDisplayChanged.emit(mDisplay);
 }
 
 double CalculatorModel::compute(double lhs, double rhs, char op) const {

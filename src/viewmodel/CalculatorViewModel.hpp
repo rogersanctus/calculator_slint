@@ -9,7 +9,7 @@ public:
   CalculatorViewModel(CalculatorView *view);
 
 private:
-  CalculatorModel m_model;
+  CalculatorModel mModel;
   CalculatorView *mView;
 
   std::vector<ScoppedConnection> connections;

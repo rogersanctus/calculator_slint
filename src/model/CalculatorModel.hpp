@@ -6,7 +6,7 @@ class CalculatorModel {
 public:
   CalculatorModel();
   [[nodiscard]] std::string display() const;
-  Signal<std::string> on_display_changed;
+  Signal<std::string> onDisplayChanged;
 
   void inputDigit(int d);
   void inputOperation(char op);
@@ -15,9 +15,9 @@ public:
   void erase();
 
 private:
-  std::string m_display = "0";
-  double m_accumulator;
-  char m_pendingOp;
-  bool m_newInput;
+  std::string mDisplay = "0";
+  double mAccumulator;
+  char mPendingOp;
+  bool mNewInput;
   double compute(double lhs, double rhs, char op) const;
 };
