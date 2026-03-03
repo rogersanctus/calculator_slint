@@ -16,6 +16,8 @@ void CalculatorModel::inputDigit(int d) {
     else
       m_display += std::to_string(d);
   }
+
+  on_display_changed.emit(m_display);
 }
 
 void CalculatorModel::inputOperation(char op) {
@@ -41,6 +43,8 @@ void CalculatorModel::inputEquals() {
   if (!m_display.empty() && m_display.back() == '.')
     m_display.pop_back();
   m_newInput = true;
+
+  on_display_changed.emit(m_display);
 }
 
 void CalculatorModel::clear() {
@@ -48,6 +52,8 @@ void CalculatorModel::clear() {
   m_accumulator = 0;
   m_pendingOp = 0;
   m_newInput = true;
+
+  on_display_changed.emit(m_display);
 }
 
 void CalculatorModel::erase() {
@@ -57,6 +63,8 @@ void CalculatorModel::erase() {
     m_display = "0";
   }
   m_newInput = false;
+
+  on_display_changed.emit(m_display);
 }
 
 double CalculatorModel::compute(double lhs, double rhs, char op) const {

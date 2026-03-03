@@ -1,10 +1,12 @@
 #pragma once
+#include "signals/Signal.hpp"
 #include <string>
 
 class CalculatorModel {
 public:
   CalculatorModel();
   [[nodiscard]] std::string display() const;
+  Signal<std::string> on_display_changed;
 
   void inputDigit(int d);
   void inputOperation(char op);

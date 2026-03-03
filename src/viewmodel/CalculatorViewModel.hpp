@@ -2,6 +2,7 @@
 #include "../model/CalculatorModel.hpp"
 #include "CalculatorView.h"
 #include <slint.h>
+#include <vector>
 
 class CalculatorViewModel {
 public:
@@ -11,8 +12,7 @@ private:
   CalculatorModel m_model;
   CalculatorView *mView;
 
-  // Helper to notify UI that display changed
-  void updateDisplay() const;
+  std::vector<ScoppedConnection> connections;
 
   void setupBindings();
 };
